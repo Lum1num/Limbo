@@ -233,7 +233,12 @@ TextLabel2.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel2.RichText = true
 local userRelated = cloneref(game:GetService("Players")).LocalPlayer.Name ~= cloneref(game:GetService("Players")).LocalPlayer.DisplayName
-TextLabel2.Text = "Welcome, <b><font color=\"rgb(147, 112, 219)\">"..cloneref(game:GetService("Players")).LocalPlayer.Name.."</font></b> "..(userRelated and "<font color=\"rgb(121, 121, 121)\">("..cloneref(game:GetService("Players")).LocalPlayer.DisplayName..")</font>" or "")
+if isfile('limbo/used') then
+    TextLabel2.Text = "Welcome back, <b><font color=\"rgb(147, 112, 219)\">"..cloneref(game:GetService("Players")).LocalPlayer.Name.."</font></b> "..(userRelated and "<font color=\"rgb(121, 121, 121)\">("..cloneref(game:GetService("Players")).LocalPlayer.DisplayName..")</font>" or "")
+else
+    TextLabel2.Text = "Welcome, <b><font color=\"rgb(147, 112, 219)\">"..cloneref(game:GetService("Players")).LocalPlayer.Name.."</font></b> "..(userRelated and "<font color=\"rgb(121, 121, 121)\">("..cloneref(game:GetService("Players")).LocalPlayer.DisplayName..")</font>" or "")
+end
+writefile('limbo/used', 'true')
 TextLabel2.Size = UDim2.new(0, 414, 0, 61)
 TextLabel2.BackgroundTransparency = 1
 TextLabel2.Position = UDim2.new(0.003113070735707879, 0, 1.0000001192092896, 0)

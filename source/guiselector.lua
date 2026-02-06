@@ -485,6 +485,14 @@ TextButton2.TextSize = 15
 TextButton2.BackgroundColor3 = Color3.fromRGB(147, 112, 219)
 TextButton2.Parent = limbo
 removeonClick(TextButton2)
+TextButton2.MouseButton1Click:Connect(function()
+    local file = 'limbo/placedetectorscript.lua'
+    if isfile(file) then
+        pcall(function()
+            loadstring(readfile(file), true)() 
+        end)
+    end
+end)
 
 local UICorner10 = Instance.new("UICorner")
 UICorner10.CornerRadius = UDim.new(0, 6)

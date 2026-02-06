@@ -181,6 +181,7 @@ local files = {
     "audio/StartIntro.ogg",
     "mainscript.lua",
     "guiselector.lua",
+    "placedetectorscript.lua"
 
     -- places
     "places/universal.lua",

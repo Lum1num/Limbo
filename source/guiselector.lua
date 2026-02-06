@@ -108,9 +108,9 @@ local function quitGui()
         shared.limbo.blur:Destroy()
         shared.limbo.blur = nil
     end
-    if shared.limbo.backgroundambience then
+    --[[if shared.limbo.backgroundambience then
         shared.limbo.backgroundambience:Destroy()
-    end
+    end]]
 end
 
 local function removeonClick(btn)
@@ -545,9 +545,9 @@ end)
 
 ChooseScript2.BackgroundColor3 = Color3.fromRGB(147, 112, 219)
 
-if shared.limbo.playSound then
+--[[if shared.limbo.playSound then
     local backgroundambience = shared.limbo.playSound('backgroundambience.mp3')
     backgroundambience.Volume = 0.3
     backgroundambience.Looped = true
     shared.limbo.backgroundambience = backgroundambience
-end
+end]]

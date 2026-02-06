@@ -166,12 +166,13 @@ local UICorner_2 = Instance.new("UICorner")
 UICorner_2.CornerRadius = UDim.new(0, 5)
 UICorner_2.Parent = bar
 
-for _, v in ipairs({ "libraryaddons", "images", "audio" }) do
+for _, v in ipairs({"libraryaddons", "images", "audio", "places"}) do
     if not isfolder(folder .. "/" .. v) then
         makefolder(folder .. "/" .. v)
     end
 end
 local files = {
+    -- stuff
     "mainguilibrary.lua",
     "libraryaddons/saveManager.lua",
     "libraryaddons/themeManager.lua",
@@ -180,7 +181,13 @@ local files = {
     "audio/StartIntro.ogg",
     "mainscript.lua",
     "guiselector.lua",
-    "audio/backgroundambience.mp3"
+
+    -- places
+    "places/universal.lua",
+    "places/7205641391.lua",
+
+    -- chunky
+    --"audio/backgroundambience.mp3", i decided to remove this since its just uh, stupid
 }
 
 local total = #files

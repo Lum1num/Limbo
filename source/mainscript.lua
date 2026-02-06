@@ -179,7 +179,7 @@ local files = {
     "images/loading.png",
     "audio/StartIntro.ogg",
     "mainscript.lua",
-    "guiselector.lua"
+    "guiselector.lua",
     "audio/backgroundambience.mp3"
 }
 

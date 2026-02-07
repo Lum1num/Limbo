@@ -1,4 +1,9 @@
 local shared = shared or _G
+for _, v in ipairs(cloneref(game:GetService('CoreGui')):GetDescendants()) do
+    if v.Name == 'Obsidian' then
+        v:Destroy()
+    end
+end
 if shared.limbo then
     for key, obj in pairs(shared.limbo) do
         pcall(function()

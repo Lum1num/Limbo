@@ -184,6 +184,7 @@ local files = {
     "guiselector.lua",
     "placedetectorscript.lua",
     "splashintro.lua",
+    "MainGUILoader.lua",
 
     "newlibrary/gui.lua",
     "newlibrary/addons/savemanager.lua",

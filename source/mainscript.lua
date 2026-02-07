@@ -51,6 +51,7 @@ local lightingService = cloneref(game:GetService("Lighting"))
 local coreGui = cloneref(game:GetService("CoreGui"))
 local tweenService = cloneref(game:GetService("TweenService"))
 local soundService = cloneref(game:GetService("SoundService"))
+local inputService = cloneref(game:GetService('UserInputService'))
 
 shared.limbo = shared.limbo or {}
 if shared.limbo.maingui then
@@ -189,6 +190,9 @@ local files = {
 
     -- chunky
     --"audio/backgroundambience.mp3", i decided to remove this since its just uh, stupid
+    "audio/correctding.mp3",
+    "audio/notf.mp3",
+    "audio/incorrectding.mp3",
 }
 
 local total = #files
@@ -209,7 +213,7 @@ end
 
 text.Text = "Finished downloading!"
 task.delay(1, function()
-    local dur = 0.5
+    local dur = 0.35
     tweenService:Create(text, TweenInfo.new(dur), {
         TextTransparency = 1,
         TextStrokeTransparency = 1
@@ -233,12 +237,16 @@ task.delay(1, function()
     tweenService:Create(shared.limbo.blur, TweenInfo.new(math.clamp(dur - 0.5, 0.1, math.huge)), {
         Size = 0
     }):Play()
-    task.wait(dur - 0.2)
+    task.wait(dur + 0.5)
 
     local suc, res = pcall(function()
         return readfile(folder .. "/guiselector.lua")
     end)
     if suc and res then
-        loadstring(res)()
+        if not inputService.TouchEnabled then
+            loadstring(res)()
+        else
+            loadstring(readfile(folder .. '/placedetectorscript.lua'))()
+        end
     end
 end)

@@ -183,7 +183,7 @@ local files = {
     "mainscript.lua",
     "guiselector.lua",
     "placedetectorscript.lua",
-    "splashintro.lua",
+    "splashintro.lua"
 
     -- places
     "places/universal.lua",

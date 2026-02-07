@@ -34,13 +34,21 @@ local function downloadFile(path, updateFile)
         return
     end
     if not isfile(filePath) then
-        writefile(filePath, res)
+        if shared.LimboVersion and filePath:find('.lua') then
+            writefile(filePath, 'Captured on version: ' .. shared.LimboVersion .. '\n' .. res)
+        else
+            writefile(filePath, res)
+        end
         return
     end
     if updateFile then
         local old = readfile(filePath)
         if old ~= res and (not res:find('--DisableCaching:True')) then
-            writefile(filePath, res)
+            if shared.LimboVersion and filePath:find('.lua') then
+                writefile(filePath, '-- Captured on version: ' .. shared.LimboVersion .. '\n' .. res)
+            else
+                writefile(filePath, res)
+            end
         end
     end
 end
@@ -113,7 +121,7 @@ title.BackgroundTransparency = 1
 title.Position = UDim2.new(0.5, 0, 0.4, 0)
 title.Size = UDim2.new(1, 0, 0.2, 0)
 title.Font = Enum.Font.Code
-title.Text = "Welcome to <font color='rgb(147,112,219)'>" .. folder .. "</font> (" .. shared.LimboVersion .. ")\n\nRunning the Limbo Installer..."
+title.Text = "Welcome to <font color='rgb(147,112,219)'>" .. folder .. "</font> (" .. shared.LimboVersion .. ")\n\nRunning the Limbo Installer...\n(<font color='rgb(255, 60, 60)'>Doesn't work?: </font> reload the script.)"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 20
 title.TextStrokeTransparency = 0
@@ -208,6 +216,10 @@ local total = #files
 local completed = 0
 for _, file in ipairs(files) do
     text.Text = "Downloading: " .. file .. "..."
+    if isfile(file) and file:find('.lua') then
+        delfile(file)
+        repeat task.wait() until not isfile(file)
+    end
     downloadFile(file, true)
     completed = completed + 1
     local progress = math.clamp(completed / total, 0, 1) - 0.0085
@@ -246,7 +258,11 @@ task.delay(1, function()
     tweenService:Create(shared.limbo.blur, TweenInfo.new(math.clamp(dur - 0.5, 0.1, math.huge)), {
         Size = 0
     }):Play()
+    task.delay(2, function()
+        shared.limbo.blur:Destroy()
+    end)
     task.wait(dur + 0.5)
+    repeat task.wait() until isfolder('limbo');wait(1)
 
     local suc, res = pcall(function()
         return readfile(folder .. "/guiselector.lua")

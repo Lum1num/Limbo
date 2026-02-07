@@ -193,6 +193,7 @@ local files = {
     "audio/correctding.mp3",
     "audio/notf.mp3",
     "audio/incorrectding.mp3",
+    "audio/splashintro.mp3",
 }
 
 local total = #files

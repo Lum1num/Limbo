@@ -564,19 +564,19 @@ local TextLabel83 = Instance.new("TextButton")
 TextLabel83.FontFace = Font.new("rbxasset://fonts/families/Inconsolata.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 TextLabel83.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel83.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel83.Text = "<b><font color='rgb(147, 112, 219)'>" .. shared.LimboRepository .. "</font></b>"
+TextLabel83.Text = "<b><font color='rgb(147, 112, 219)'>" .. (shared.LimboRepository):gsub('raw.githubusercontent', 'github') .. "</font></b>"
 
 TextLabel83.MouseEnter:Connect(function()
-    TextLabel83.Text = "<b><font color='rgb(194, 170, 243)'>" .. shared.LimboRepository .. "</font></b>"
+    TextLabel83.Text = "<b><font color='rgb(194, 170, 243)'>" .. (shared.LimboRepository):gsub('raw.githubusercontent', 'github') .. "</font></b>"
 end)
 
 TextLabel83.MouseLeave:Connect(function()
-    TextLabel83.Text = "<b><font color='rgb(147, 112, 219)'>" .. shared.LimboRepository .. "</font></b>"
+    TextLabel83.Text = "<b><font color='rgb(147, 112, 219)'>" .. (shared.LimboRepository):gsub('raw.githubusercontent', 'github') .. "</font></b>"
 end)
 
 function copyidk()
     if not setclipboard then return end
-    setclipboard(shared.LimboRepository)
+    setclipboard((shared.LimboRepository):gsub('raw.githubusercontent', 'github'))
     TextLabel83.Text = "<font color='rgb(113, 255, 113)'>Copied repository url!</font>"
 end
 

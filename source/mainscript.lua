@@ -167,7 +167,7 @@ local UICorner_2 = Instance.new("UICorner")
 UICorner_2.CornerRadius = UDim.new(0, 5)
 UICorner_2.Parent = bar
 
-for _, v in ipairs({"libraryaddons", "images", "audio", "places"}) do
+for _, v in ipairs({"libraryaddons", "images", "audio", "places", "newlibrary", "newlibrary/addons"}) do
     if not isfolder(folder .. "/" .. v) then
         makefolder(folder .. "/" .. v)
     end
@@ -185,12 +185,13 @@ local files = {
     "placedetectorscript.lua",
     "splashintro.lua",
 
-    -- places
+    "newlibrary/gui.lua",
+    "newlibrary/addons/savemanager.lua",
+    "newlibrary/addons/thememanager.lua",
+
     "places/universal.lua",
     "places/7205641391.lua",
 
-    -- chunky
-    --"audio/backgroundambience.mp3", i decided to remove this since its just uh, stupid
     "audio/correctding.mp3",
     "audio/notf.mp3",
     "audio/incorrectding.mp3",

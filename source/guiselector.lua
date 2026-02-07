@@ -13,6 +13,12 @@ if shared.limbo then
     end
 end
 
+local function playonClick(inst, sound, vol, pb)
+    inst.MouseButton1Down:Connect(function()
+        shared.limbo.playSound(sound, vol, pb)
+    end)
+end
+
 shared.LimboRepository = "https://raw.githubusercontent.com/Lum1num/Limbo"
 shared.LimboSource = shared.LimboRepository .. "/main/source"
 
@@ -173,7 +179,7 @@ local TextLabel = Instance.new("TextLabel")
 TextLabel.FontFace = Font.new("rbxasset://fonts/families/Inconsolata.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.Text = "Limbo Window"
+TextLabel.Text = "Launcher"
 TextLabel.Size = UDim2.new(1, 0, 1, 0)
 TextLabel.BackgroundTransparency = 1
 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -514,9 +520,9 @@ creditstab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 creditstab.Parent = tabcontents
 
 local UIListLayout6 = Instance.new("UIListLayout")
-UIListLayout6.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout6.FillDirection = Enum.FillDirection.Vertical
 UIListLayout6.HorizontalAlignment = Enum.HorizontalAlignment.Center
-UIListLayout6.Padding = UDim.new(0, 10)
+UIListLayout6.Padding = UDim.new(0, 1)
 UIListLayout6.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout6.Parent = creditstab
 
@@ -524,7 +530,9 @@ local TextLabel7 = Instance.new("TextLabel")
 TextLabel7.FontFace = Font.new("rbxasset://fonts/families/Inconsolata.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 TextLabel7.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel7.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel7.Text = "<font color='rgb(255, 50, 50)'>Luminum</font> - Main Developer & Maintainer"
+TextLabel7.Text = [[<font color='rgb(255, 50, 50)'>Luminum</font> - Main Developer & Maintainer]]
+
+
 TextLabel7.Size = UDim2.new(0, 412, 0, 22)
 TextLabel7.BackgroundTransparency = 1
 TextLabel7.Position = UDim2.new(-0.02020205929875374, 0, 0, 0)
@@ -533,6 +541,58 @@ TextLabel7.RichText = true
 TextLabel7.TextSize = 15
 TextLabel7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel7.Parent = creditstab
+
+function createspaceidk()
+    local SPACER = Instance.new("TextLabel")
+    SPACER.FontFace = Font.new("rbxasset://fonts/families/Inconsolata.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+    SPACER.TextColor3 = Color3.fromRGB(255, 255, 255)
+    SPACER.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    SPACER.Text = ''
+    SPACER.Size = UDim2.new(0, 412, 0, 22)
+    SPACER.BackgroundTransparency = 1
+    SPACER.Position = UDim2.new(-0.02020205929875374, 0, 0, 0)
+    SPACER.BorderSizePixel = 0
+    SPACER.RichText = true
+    SPACER.TextSize = 15
+    SPACER.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    SPACER.Parent = creditstab
+end
+
+createspaceidk();createspaceidk()
+
+local TextLabel83 = Instance.new("TextButton")
+TextLabel83.FontFace = Font.new("rbxasset://fonts/families/Inconsolata.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+TextLabel83.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel83.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel83.Text = "<b><font color='rgb(147, 112, 219)'>" .. shared.LimboRepository .. "</font></b>"
+
+TextLabel83.MouseEnter:Connect(function()
+    TextLabel83.Text = "<b><font color='rgb(194, 170, 243)'>" .. shared.LimboRepository .. "</font></b>"
+end)
+
+TextLabel83.MouseLeave:Connect(function()
+    TextLabel83.Text = "<b><font color='rgb(147, 112, 219)'>" .. shared.LimboRepository .. "</font></b>"
+end)
+
+function copyidk()
+    if not setclipboard then return end
+    setclipboard(shared.LimboRepository)
+    TextLabel83.Text = "<font color='rgb(113, 255, 113)'>Copied repository url!</font>"
+end
+
+TextLabel83.MouseButton1Down:Connect(function()
+    copyidk()
+    shared.limbo.playSound('correctding.mp3')
+end)
+
+TextLabel83.Size = UDim2.new(0, 412, 0, 22)
+TextLabel83.BackgroundTransparency = 1
+TextLabel83.Position = UDim2.new(-0.02020205929875374, 0, 0, 0)
+TextLabel83.BorderSizePixel = 0
+TextLabel83.RichText = true
+TextLabel83.TextSize = 15
+TextLabel83.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel83.Parent = creditstab
 
 local function switchTab(showVersion)
     if showVersion then
